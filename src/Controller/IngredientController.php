@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 
 class IngredientController extends AbstractController
 {
@@ -82,10 +82,10 @@ class IngredientController extends AbstractController
     }
 
     #[Route('/ingredient/edit/{id}', name: 'ingredient.edit', methods: ['GET', 'POST'])]
-    #[Entity('Ingredient', expr: 'repository.find(id)')]
+    #[Entity('ingredient', expr: 'repository.find(id)')] //Deprecated - need to found new solution
     public function edit(
-        Request $request,
         Ingredient $ingredient,
+        Request $request,
     ): Response {
         dd($ingredient);
         
